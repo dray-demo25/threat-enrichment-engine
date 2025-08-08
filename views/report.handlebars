@@ -1,0 +1,112 @@
+# Threat Intelligence Report for
+{{query}}
+
+**Date:**
+{{date}}
+
+## Reputation Scores ### Shodan
+{{#if reputation.shodan.ip_info.ip}}
+  - **IP Information:** - **IP Address:**
+  {{reputation.shodan.ip_info.ip}}
+  - **Country:**
+  {{reputation.shodan.ip_info.country}}
+  - **City:**
+  {{reputation.shodan.ip_info.city}}
+  - **ISP:**
+  {{reputation.shodan.ip_info.isp}}
+  - **Organization:**
+  {{reputation.shodan.ip_info.organization}}
+  - **ASN:**
+  {{reputation.shodan.ip_info.asn}}
+  - **Latitude/Longitude:**
+  {{reputation.shodan.ip_info.latitude}},
+  {{reputation.shodan.ip_info.longitude}}
+  - **Operating System:**
+  {{reputation.shodan.ip_info.operating_system}}
+  - **Hostnames and Domains:** - **Hostnames:**
+  {{#each reputation.shodan.hostnames_domains.hostnames}}{{this}}, {{/each}}
+  - **Domains:**
+  {{#each reputation.shodan.hostnames_domains.domains}}{{this}}, {{/each}}
+  - **Open Ports:**
+  {{#each reputation.shodan.open_ports}}
+    - **Port:**
+    {{port}}
+    ({{service}}) -
+    {{active}}
+  {{/each}}
+  - **SSL/TLS Details:**
+  {{#if reputation.shodan.ssl_details}}
+    <ul>
+      <li><strong>Subject:</strong>
+        {{reputation.shodan.ssl_details.subject}}</li>
+      <li><strong>Issuer:</strong> {{reputation.shodan.ssl_details.issuer}}</li>
+      <li><strong>SHA-256 Fingerprint:</strong>
+        {{reputation.shodan.ssl_details.sha256_fingerprint}}</li>
+      <li><strong>Expiration Date:</strong>
+        {{reputation.shodan.ssl_details.expiration_date}}</li>
+      <li><strong>TLS Version:</strong>
+        {{reputation.shodan.ssl_details.tls_version}}</li>
+      <li><strong>Cipher:</strong> {{reputation.shodan.ssl_details.cipher}}</li>
+    </ul>
+  {{else}}
+    <p>No SSL/TLS details available.</p>
+  {{/if}}
+  - **HTTP Security Headers:**
+  {{#if reputation.shodan.http_headers}}
+    <ul>
+      {{#each reputation.shodan.http_headers}}
+        <li><strong>{{@key}}:</strong> {{this}}</li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No HTTP security headers available.</p>
+  {{/if}}
+  - **Cloud Provider Information:**
+  {{#if reputation.shodan.cloud_provider}}
+    <ul>
+      <li><strong>Service Provider:</strong>
+        {{reputation.shodan.cloud_provider.service_provider}}</li>
+      <li><strong>Region:</strong>
+        {{reputation.shodan.cloud_provider.region}}</li>
+      <li><strong>Service Type:</strong>
+        {{reputation.shodan.cloud_provider.service_type}}</li>
+    </ul>
+  {{else}}
+    <p>No cloud provider information available.</p>
+  {{/if}}
+  - **Additional Details:**
+  <p>{{reputation.shodan.additional_details}}</p>
+{{else}}
+  - **Shodan data unavailable for this query type.**
+{{/if}}
+
+--- ### VirusTotal - **Malicious Reports:**
+{{reputation.virustotal.malicious_reports}}
+- **Benign Reports:**
+{{reputation.virustotal.benign_reports}}
+- **Reputation Score:**
+{{reputation.virustotal.reputation_score}}
+
+Reported Malware Association:
+{{#each reputation.virustotal.malware_associations}}
+  -
+  {{this}}
+{{/each}}
+
+- **VirusTotal Query URL:** [View Details on VirusTotal]({{reputation.virustotal.query_url}})
+--- ### OTX
+{{#if reputation.otx.threat_indicators}}
+  - **Threat Indicators:**
+  {{#each reputation.otx.threat_indicators}}
+    - **{{indicator}}**:
+    {{description}}
+  {{/each}}
+  - **OTX Query URL:** [View Details on OTX]({{reputation.otx.query_url}})
+{{else}}
+  - **OTX data unavailable for this query type.**
+{{/if}}
+
+--- ## Risk Assessment - **Risk Level:**
+{{risk_level}}
+- **Recommendations:**
+{{recommendations}}
