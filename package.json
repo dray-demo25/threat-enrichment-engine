@@ -1,0 +1,65 @@
+{
+  "name": "security-operations-threatadvisor",
+  "version": "1.1.0",
+  "description": "A threat intelligence API tool for querying domains, IPs, URLs, and file hashes with enhanced CVE data and error handling.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "express-rate-limit": "^7.4.1",
+    "express-session": "^1.18.1",
+    "passport": "^0.7.0",
+    "passport-oauth2": "^1.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "engines": {
+    "node": ">=16.x"
+  },
+  "license": "MIT",
+  "keywords": [
+    "threat-intelligence",
+    "shodan",
+    "virustotal",
+    "otx",
+    "api",
+    "middleware",
+    "cve",
+    "error-handling"
+  ],
+  "openai": {
+    "api_schema_version": "1.5.0",
+    "description": "A threat intelligence API using Shodan, VirusTotal, and OTX with enhanced CVE data and error handling.",
+    "examples": [
+      {
+        "name": "Domain Reputation Query",
+        "query": {
+          "query_type": "domain",
+          "query_value": "example.com"
+        }
+      },
+      {
+        "name": "IP Reputation Query",
+        "query": {
+          "query_type": "ip",
+          "query_value": "93.184.216.34"
+        }
+      },
+      {
+        "name": "File Hash Query",
+        "query": {
+          "query_type": "file",
+          "query_value": "44d88612fea8a8f36de82e1278abb02f"
+        }
+      }
+    ]
+  }
+}
